@@ -341,135 +341,111 @@
     100% { top: 100%; }
   }
 
-  /* ─── Hero Collage Overlay ─── */
+  /* ─── Hero Collage Overlay (Waabi-style orbital) ─── */
   .hero-collage-shell {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(40px, 10vh, 80px) 0;
     opacity: 0;
     transform: translateY(80px);
     pointer-events: none;
-    transition: color 0.4s ease;
-  }
-  .hero-collage-shell .container {
-    width: 100%;
-  }
-  .hero-collage-layout {
-    position: relative;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
-    gap: clamp(32px, 5vw, 64px);
-    align-items: center;
-  }
-  .hero-collage-main {
-    position: relative;
-    border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 32px 120px rgba(0,0,0,0.45);
   }
-  .hero-collage-main img {
+
+  /* ── Centered text content ── */
+  .hero-collage-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 5;
     width: 100%;
-    height: 100%;
-    max-height: 520px;
-    object-fit: cover;
-    display: block;
-  }
-  .hero-collage-copy {
-    color: #16130d;
+    max-width: 620px;
+    padding: 0 24px;
   }
   .hero-collage-kicker {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #b46922;
-    font-weight: 600;
-    margin-bottom: 16px;
+    color: #9a917e;
+    font-weight: 500;
+    margin-bottom: 20px;
   }
   .hero-collage-title {
     font-family: var(--serif);
-    font-size: clamp(2.1rem, 3.5vw, 3rem);
-    line-height: 1.1;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    line-height: 1.12;
     letter-spacing: -0.02em;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    color: #16130d;
   }
   .hero-collage-title em {
     font-style: italic;
     color: #b46922;
   }
   .hero-collage-body {
-    font-size: 0.98rem;
-    line-height: 1.7;
-    color: #5b4e3b;
-    max-width: 360px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #6b6152;
+    max-width: 480px;
+    margin: 0 auto;
   }
-  .hero-collage-floats {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
+
+  /* ── Orbital floating tiles ── */
   .hero-collage-tile {
     position: absolute;
-    width: 120px;
-    height: 120px;
-    border-radius: 24px;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
   }
   .hero-collage-tile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
-  .hero-collage-tile.tile-1 { top: 4%; left: 4%; }
-  .hero-collage-tile.tile-2 { top: 10%; right: 10%; }
-  .hero-collage-tile.tile-3 { bottom: 18%; left: 12%; }
-  .hero-collage-tile.tile-4 { bottom: 12%; right: 4%; }
 
-  @media (max-width: 900px) {
-    .hero-collage-layout {
-      grid-template-columns: minmax(0, 1fr);
-      max-width: 700px;
-    }
-    .hero-collage-main {
-      max-width: 520px;
-      margin: 0 auto;
-    }
+  /* Tile sizes & positions — scattered around edges */
+  .hero-collage-tile.tile-1 { width: 180px; height: 140px; top: 5%;  left: 4%; border-radius: 20px; }
+  .hero-collage-tile.tile-2 { width: 160px; height: 120px; top: 4%;  left: 50%; transform: translateX(-50%); border-radius: 18px; }
+  .hero-collage-tile.tile-3 { width: 170px; height: 130px; top: 6%;  right: 5%; border-radius: 20px; }
+  .hero-collage-tile.tile-4 { width: 140px; height: 180px; top: 35%; left: 3%; border-radius: 22px; }
+  .hero-collage-tile.tile-5 { width: 150px; height: 190px; top: 32%; right: 4%; border-radius: 22px; }
+  .hero-collage-tile.tile-6 { width: 160px; height: 120px; bottom: 8%; left: 6%; border-radius: 18px; }
+  .hero-collage-tile.tile-7 { width: 180px; height: 140px; bottom: 5%; left: 50%; transform: translateX(-50%); border-radius: 20px; }
+  .hero-collage-tile.tile-8 { width: 150px; height: 120px; bottom: 10%; right: 5%; border-radius: 18px; }
+
+  @media (max-width: 1200px) {
+    .hero-collage-tile.tile-1 { width: 140px; height: 110px; }
+    .hero-collage-tile.tile-2 { width: 130px; height: 100px; }
+    .hero-collage-tile.tile-3 { width: 140px; height: 110px; }
+    .hero-collage-tile.tile-4 { width: 110px; height: 140px; left: 1%; }
+    .hero-collage-tile.tile-5 { width: 120px; height: 150px; right: 1%; }
+    .hero-collage-tile.tile-6 { width: 130px; height: 100px; }
+    .hero-collage-tile.tile-7 { width: 140px; height: 110px; }
+    .hero-collage-tile.tile-8 { width: 120px; height: 100px; }
   }
+
   @media (max-width: 768px) {
-    .hero-experience {
-      height: 100vh;
-    }
-    .hero-collage-shell {
-      align-items: flex-end;
-      padding-bottom: 32px;
-    }
-    .hero-collage-layout {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      text-align: center;
-    }
-    .hero-collage-body {
-      max-width: none;
-    }
-    .hero-collage-floats {
-      position: static;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .hero-collage-tile {
-      position: static;
-      width: 80px;
+    .hero-experience { height: 100vh; }
+    .hero-collage-tile { display: none; }
+    .hero-collage-tile.tile-1,
+    .hero-collage-tile.tile-2,
+    .hero-collage-tile.tile-3,
+    .hero-collage-tile.tile-6 {
+      display: block;
+      width: 100px;
       height: 80px;
+    }
+    .hero-collage-tile.tile-1 { top: 6%; left: 5%; }
+    .hero-collage-tile.tile-2 { top: 5%; right: 5%; left: auto; transform: none; }
+    .hero-collage-tile.tile-3 { display: none; }
+    .hero-collage-tile.tile-6 { bottom: 8%; left: 8%; }
+    .hero-collage-center {
+      max-width: 380px;
+    }
+    .hero-collage-title {
+      font-size: clamp(1.8rem, 6vw, 2.4rem);
     }
   }
 
@@ -1097,34 +1073,39 @@
   </div>
 
   <div class="hero-collage-shell">
-    <div class="container">
-      <div class="hero-collage-layout">
-        <div class="hero-collage-main">
-          <img src="https://images.unsplash.com/photo-1605235186583-a8272b71f21c?w=1400&q=80" alt="Rider on trail at golden hour" />
-        </div>
-        <div class="hero-collage-copy">
-          <div class="hero-collage-kicker">We built our own road.</div>
-          <h2 class="hero-collage-title">Our trails are <em>living proof.</em></h2>
-          <p class="hero-collage-body">
-            From Black Mountain to Noble Canyon, SDMBA volunteers carve, maintain, and protect the singletrack that riders dream about—one shovel full at a time.
-          </p>
-        </div>
+    <!-- Centered text -->
+    <div class="hero-collage-center">
+      <div class="hero-collage-kicker">We built our own road.</div>
+      <h2 class="hero-collage-title">Our trails are <em>living proof.</em></h2>
+      <p class="hero-collage-body">
+        From Black Mountain to Noble Canyon, SDMBA volunteers carve, maintain, and protect the singletrack that riders dream about — one shovel full at a time.
+      </p>
+    </div>
 
-        <div class="hero-collage-floats">
-          <div class="hero-collage-tile tile-1">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Riders climbing a ridgeline" />
-          </div>
-          <div class="hero-collage-tile tile-2">
-            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&q=80" alt="Rocky mountain bike trail" />
-          </div>
-          <div class="hero-collage-tile tile-3">
-            <img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&q=80" alt="Rider in the trees at dusk" />
-          </div>
-          <div class="hero-collage-tile tile-4">
-            <img src="https://images.unsplash.com/photo-1594942468124-a0a6a29a9e5a?w=600&q=80" alt="Desert singletrack at sunset" />
-          </div>
-        </div>
-      </div>
+    <!-- Orbital scattered images -->
+    <div class="hero-collage-tile tile-1">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Riders climbing a ridgeline" />
+    </div>
+    <div class="hero-collage-tile tile-2">
+      <img src="https://images.unsplash.com/photo-1605235186583-a8272b71f21c?w=600&q=80" alt="Rider on trail at golden hour" />
+    </div>
+    <div class="hero-collage-tile tile-3">
+      <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&q=80" alt="Cycling group ride" />
+    </div>
+    <div class="hero-collage-tile tile-4">
+      <img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&q=80" alt="Rider in the trees at dusk" />
+    </div>
+    <div class="hero-collage-tile tile-5">
+      <img src="https://images.unsplash.com/photo-1594942468124-a0a6a29a9e5a?w=600&q=80" alt="Desert singletrack at sunset" />
+    </div>
+    <div class="hero-collage-tile tile-6">
+      <img src="https://images.unsplash.com/photo-1571188654248-7a89213915f7?w=600&q=80" alt="Mountain trail overview" />
+    </div>
+    <div class="hero-collage-tile tile-7">
+      <img src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?w=600&q=80" alt="Mountain biking action" />
+    </div>
+    <div class="hero-collage-tile tile-8">
+      <img src="https://images.unsplash.com/photo-1559521783-1d1599583485?w=600&q=80" alt="Scenic trail view" />
     </div>
   </div>
 </section>
@@ -1476,18 +1457,28 @@ heroExperienceTL
     ease: "power2.out",
     pointerEvents: "auto"
   }, 0.5)
-  .from(".hero-collage-tile", {
-    y: 40,
+  .from(".hero-collage-center", {
     opacity: 0,
-    duration: 0.9,
+    y: 30,
+    duration: 0.8,
+    ease: "power3.out"
+  }, 0.6)
+  .from(".hero-collage-tile", {
+    scale: 0.7,
+    opacity: 0,
+    duration: 1,
     ease: "power3.out",
-    stagger: 0.08
-  }, 0.6);
+    stagger: 0.06
+  }, 0.55);
 
+/* ── Gentle floating animation for orbital tiles ── */
 gsap.utils.toArray(".hero-collage-tile").forEach((tile, index) => {
+  const yDist = 8 + (index % 3) * 4;
+  const xDist = 4 + (index % 2) * 3;
   gsap.to(tile, {
-    y: "+=12",
-    duration: 3 + index * 0.4,
+    y: `+=${yDist}`,
+    x: `+=${index % 2 === 0 ? xDist : -xDist}`,
+    duration: 3.5 + index * 0.3,
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut"
