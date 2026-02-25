@@ -56,6 +56,18 @@
     box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
     position: relative;
     z-index: 2;
+    overflow: hidden;
+  }
+  .pill-nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    height: 2.5px;
+    width: 0%;
+    background: #e84068;
+    border-radius: 2px;
+    transition: width 0.05s linear;
+    z-index: 3;
   }
   .pill-nav-logo {
     font-family: var(--sans);
@@ -277,7 +289,7 @@
     font-weight: 400;
     font-size: clamp(3.5rem, 9vw, 8.5rem);
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: 0.01em;
     color: var(--fg);
   }
   .hero-title .line { display: block; overflow: hidden; }
@@ -532,7 +544,7 @@
     font-family: var(--serif);
     font-size: clamp(2.5rem, 5vw, 5rem);
     line-height: 1.05;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
     max-width: 700px;
   }
   .parallax-text h2 em { font-style: italic; color: var(--accent); }
@@ -646,7 +658,7 @@
     font-family: var(--serif);
     font-size: clamp(2.5rem, 4vw, 4rem);
     line-height: 1.08;
-    letter-spacing: -0.03em;
+    letter-spacing: 0.01em;
     margin-bottom: 20px;
   }
   .featured-body h3 em { font-style: italic; color: var(--accent); }
@@ -1012,6 +1024,7 @@
         <span></span>
       </div>
     </button>
+    <div class="pill-nav-progress" id="navProgress"></div>
   </div>
   <div class="pill-dropdown" id="pillDropdown">
     <div class="pill-dropdown-label">Menu</div>
@@ -1363,6 +1376,15 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
+/* ── Nav Scroll Progress Bar ── */
+const navProgress = document.getElementById('navProgress');
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  navProgress.style.width = progress + '%';
+}, { passive: true });
+
 /* ── Pill Nav Menu Toggle ── */
 const pillNav = document.getElementById('pillNav');
 const menuToggle = document.getElementById('menuToggle');
@@ -1510,12 +1532,34 @@ for (let i = 0; i < html.length; i++) {
   }
 }
 if (buffer.trim()) words.push(buffer);
+// Split trailing punctuation (e.g. "trails," -> "trails" + ",") so commas can animate with their own timing
+const splitWords = [];
+words.forEach(w => {
+  if (w === ' ') {
+    splitWords.push(w);
+    return;
+  }
+  const m = w.match(/^(.*?)([,.;:!?])$/);
+  if (m) {
+    if (m[1]) splitWords.push(m[1]);
+    splitWords.push(m[2]);
+  } else {
+    splitWords.push(w);
+  }
+});
 
-statementEl.innerHTML = words.map(w =>
+statementEl.innerHTML = splitWords.map(w =>
   w === ' ' ? ' ' : `<span class="word">${w}</span>`
 ).join('');
 
 const wordEls = statementEl.querySelectorAll('.word');
+// Punctuation-only spans reveal with the previous word so the comma after "sustainable trails" doesn't light up before the phrase
+function revealIndex(i) {
+  const text = (wordEls[i] && wordEls[i].textContent) || '';
+  const noLettersOrDigits = !/[a-zA-Z0-9]/.test(text);
+  if (i > 0 && noLettersOrDigits) return revealIndex(i - 1);
+  return i;
+}
 ScrollTrigger.create({
   trigger: ".statement",
   start: "top 75%",
@@ -1524,7 +1568,7 @@ ScrollTrigger.create({
   onUpdate: (self) => {
     const progress = self.progress;
     wordEls.forEach((w, i) => {
-      const wordProgress = i / wordEls.length;
+      const wordProgress = revealIndex(i) / wordEls.length;
       w.classList.toggle('active', wordProgress < progress + 0.05);
     });
   }
