@@ -1428,48 +1428,52 @@ const heroExperienceTL = gsap.timeline({
 });
 
 heroExperienceTL
-  .to(".hero-bg img", {
-    yPercent: 20,
-    duration: 1
-  }, 0)
-  .to(".hero", {
-    scale: 0.68,
-    yPercent: 15,
-    borderRadius: 32,
-    boxShadow: "0 40px 120px rgba(0,0,0,0.65)",
-    duration: 1.2,
-    ease: "power2.out"
-  }, 0)
+  /* Phase 1: Hero text fades, image starts shrinking */
   .to(".hero-title, .hero-sub, .hero-tag, .scroll-indicator", {
     opacity: 0,
-    y: 40,
-    duration: 0.8,
+    y: 30,
+    duration: 0.5,
     ease: "power2.out"
-  }, 0.15)
+  }, 0)
+  .to(".hero-bg img", {
+    yPercent: 10,
+    duration: 0.8
+  }, 0)
+  /* Phase 2: Hero shrinks down into a small tile and fades out */
+  .to(".hero", {
+    scale: 0.12,
+    borderRadius: 28,
+    boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+    opacity: 0,
+    duration: 1.4,
+    ease: "power3.inOut"
+  }, 0.1)
+  /* Phase 3: Background transitions to warm cream */
   .to(".hero-experience", {
     backgroundColor: "#f6f3ea",
-    duration: 1
-  }, 0.3)
+    duration: 0.8
+  }, 0.2)
+  /* Phase 4: Collage fades in — text first, then tiles scatter in */
   .to(".hero-collage-shell", {
     opacity: 1,
     y: 0,
-    duration: 1,
+    duration: 0.8,
     ease: "power2.out",
     pointerEvents: "auto"
   }, 0.5)
   .from(".hero-collage-center", {
     opacity: 0,
-    y: 30,
-    duration: 0.8,
+    y: 20,
+    duration: 0.7,
     ease: "power3.out"
-  }, 0.6)
+  }, 0.65)
   .from(".hero-collage-tile", {
-    scale: 0.7,
+    scale: 0.5,
     opacity: 0,
-    duration: 1,
-    ease: "power3.out",
-    stagger: 0.06
-  }, 0.55);
+    duration: 1.2,
+    ease: "back.out(1.2)",
+    stagger: 0.05
+  }, 0.6);
 
 /* ── Gentle floating animation for orbital tiles ── */
 gsap.utils.toArray(".hero-collage-tile").forEach((tile, index) => {
