@@ -101,32 +101,23 @@
     background: rgba(0,0,0,0.05);
   }
   .pill-nav-toggle-icon {
-    width: 18px;
-    height: 12px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 20px;
+    height: 16px;
   }
-  .pill-nav-toggle-icon span {
-    display: block;
-    width: 100%;
-    height: 1.8px;
-    background: #333;
-    border-radius: 2px;
+  .pill-nav-toggle-icon .wave-line {
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-origin: center;
   }
-  .pill-nav.menu-open .pill-nav-toggle-icon span:nth-child(1) {
-    transform: translateY(5.1px) rotate(0deg);
+  .pill-nav.menu-open .pill-nav-toggle-icon .wave-1 {
     opacity: 0;
+    transform: translateY(4px);
   }
-  .pill-nav.menu-open .pill-nav-toggle-icon span:nth-child(2) {
-    width: 100%;
+  .pill-nav.menu-open .pill-nav-toggle-icon .wave-2 {
+    opacity: 1;
   }
-  .pill-nav.menu-open .pill-nav-toggle-icon span:nth-child(3) {
-    transform: translateY(-5.1px) rotate(0deg);
+  .pill-nav.menu-open .pill-nav-toggle-icon .wave-3 {
     opacity: 0;
+    transform: translateY(-4px);
   }
 
   /* ─── Dropdown Menu ─── */
@@ -1019,11 +1010,11 @@
     <a href="https://sdmba.com/" class="pill-nav-logo">SDMBA</a>
     <span class="pill-nav-page">Home</span>
     <button class="pill-nav-toggle" id="menuToggle" aria-label="Menu">
-      <div class="pill-nav-toggle-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <svg class="pill-nav-toggle-icon" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wave-line wave-1" d="M2 3 C5 1, 7 5, 10 3 C13 1, 15 5, 18 3 C20 1.5, 21 2, 22 3" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="wave-line wave-2" d="M2 9 C5 7, 7 11, 10 9 C13 7, 15 11, 18 9 C20 7.5, 21 8, 22 9" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="wave-line wave-3" d="M2 15 C5 13, 7 17, 10 15 C13 13, 15 17, 18 15 C20 13.5, 21 14, 22 15" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
     </button>
     <div class="pill-nav-progress" id="navProgress"></div>
   </div>
