@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — SDMBA</title>
+<title>Our Impact — SDMBA</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -338,47 +338,37 @@
   }
   .section-title em { font-style: italic; color: var(--accent); }
 
-  /* ─── Awards Stats Grid ─── */
-  .awards {
+  /* ─── Stats ─── */
+  .stats {
     padding: 0 0 clamp(100px, 15vh, 200px);
   }
-  .awards-grid {
+  .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
     border-radius: 20px;
     overflow: hidden;
   }
-  .award-cell {
+  .stat-cell {
     background: var(--bg);
-    padding: clamp(36px, 5vw, 56px) clamp(20px, 3vw, 40px);
+    padding: clamp(32px, 5vw, 56px) clamp(20px, 3vw, 40px);
     text-align: center;
-    transition: background 0.5s;
   }
-  .award-cell:hover { background: #0f0f0e; }
-  .award-year {
+  .stat-number {
     font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     line-height: 1;
-    color: var(--accent);
-    opacity: 0.35;
-    margin-bottom: 16px;
+    color: var(--fg);
+    letter-spacing: -0.03em;
   }
-  .award-title {
-    font-family: var(--serif);
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-  .award-org {
+  .stat-label {
     font-size: 0.82rem;
     color: var(--fg-dim);
+    margin-top: 8px;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     font-weight: 500;
   }
 
@@ -413,19 +403,77 @@
   }
   .parallax-text h2 em { font-style: italic; color: var(--accent); }
 
-  /* ─── Staff Section ─── */
-  .staff {
-    padding: clamp(100px, 15vh, 200px) 0;
+  /* ─── Featured Split ─── */
+  .featured {
+    padding: clamp(80px, 12vh, 160px) 0;
   }
-  .staff-header {
+  .featured-header {
     margin-bottom: clamp(56px, 8vh, 100px);
   }
-  .staff-grid {
+  .featured-split {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(40px, 5vw, 80px);
+    align-items: center;
+  }
+  .featured-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .featured-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: brightness(0.8) contrast(1.05);
+    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .featured-image:hover img { transform: scale(1.04); }
+  .featured-badge {
+    position: absolute;
+    top: 24px; left: 24px;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 8px 20px;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .featured-body { max-width: 520px; }
+  .featured-body h3 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+  }
+  .featured-body h3 em { font-style: italic; color: var(--accent); }
+  .featured-body p {
+    font-size: 1rem;
+    color: var(--fg-dim);
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+  .featured-body .project-status {
+    margin-bottom: 24px;
+  }
+
+  /* ─── Project Cards ─── */
+  .projects {
+    padding: 0 0 clamp(100px, 15vh, 200px);
+  }
+  .projects-header {
+    margin-bottom: clamp(56px, 8vh, 100px);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  .staff-card {
+  .project-card {
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: clamp(36px, 4vw, 56px);
@@ -434,7 +482,7 @@
     position: relative;
     overflow: hidden;
   }
-  .staff-card::before {
+  .project-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -442,121 +490,174 @@
     background: linear-gradient(180deg, var(--accent-soft), transparent);
     transition: height 0.6s;
   }
-  .staff-card:hover::before { height: 200px; }
-  .staff-card:hover {
+  .project-card:hover::before { height: 200px; }
+  .project-card:hover {
     border-color: rgba(197,225,71,0.2);
     transform: translateY(-6px);
   }
-  .staff-role {
+  .project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent);
+    letter-spacing: 0.12em;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     position: relative;
   }
-  .staff-card h3 {
+  .project-status::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .project-status.status-active::before { background: var(--accent); }
+  .project-status.status-active { color: var(--accent); }
+  .project-status.status-pending::before { background: #e0a030; }
+  .project-status.status-pending { color: #e0a030; }
+  .project-status.status-planning::before { background: #60a0e0; }
+  .project-status.status-planning { color: #60a0e0; }
+  .project-status.status-none::before { background: var(--fg-dim); }
+  .project-status.status-none { color: var(--fg-dim); }
+  .project-card h3 {
     font-family: var(--serif);
     font-size: 2rem;
     font-weight: 400;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     position: relative;
     letter-spacing: -0.01em;
   }
-  .staff-card p {
+  .project-card .project-manager {
+    font-size: 0.78rem;
+    color: var(--fg-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .project-card p {
     font-size: 0.92rem;
     color: var(--fg-dim);
     line-height: 1.7;
     position: relative;
-    margin-bottom: 24px;
   }
-  .staff-email {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    color: var(--fg-dim);
-    position: relative;
-    transition: color 0.3s;
-  }
-  .staff-email:hover { color: var(--accent); }
-  .staff-email svg { width: 14px; height: 14px; }
 
-  /* ─── Board Grid ─── */
-  .board {
-    padding: 0 0 clamp(100px, 15vh, 200px);
+  /* ─── Project Image Cards ─── */
+  .local-projects {
+    padding: clamp(100px, 15vh, 200px) 0;
   }
-  .board-header {
+  .local-projects-header {
     margin-bottom: clamp(56px, 8vh, 100px);
   }
-  .board-grid {
+  .project-image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .project-image-card {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--bg);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .project-image-card:hover {
+    border-color: rgba(197,225,71,0.2);
+    transform: translateY(-6px);
+  }
+  .project-image-card .card-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  .project-image-card .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.05);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .project-image-card:hover .card-img img {
+    filter: brightness(0.85) contrast(1.05);
+    transform: scale(1.05);
+  }
+  .project-image-card .card-body {
+    padding: clamp(24px, 3vw, 36px);
+  }
+  .project-image-card .card-body h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .project-image-card .card-body .project-manager {
+    font-size: 0.78rem;
+    color: var(--fg-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .project-image-card .card-body p {
+    font-size: 0.88rem;
+    color: var(--fg-dim);
+    line-height: 1.7;
+  }
+
+  /* ─── State Federal Grid ─── */
+  .state-federal {
+    padding: clamp(100px, 15vh, 200px) 0;
+  }
+  .state-federal-header {
+    margin-bottom: clamp(56px, 8vh, 100px);
+  }
+  .state-federal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
     border-radius: 20px;
     overflow: hidden;
   }
-  .board-cell {
+  .state-federal-cell {
     background: var(--bg);
     padding: clamp(36px, 4vw, 56px);
     position: relative;
     transition: background 0.5s;
   }
-  .board-cell:hover { background: #0f0f0e; }
-  .board-cell .board-role {
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  .board-cell h3 {
+  .state-federal-cell:hover { background: #0f0f0e; }
+  .state-federal-cell h3 {
     font-family: var(--serif);
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 10px;
     letter-spacing: -0.01em;
   }
-  .board-cell p {
+  .state-federal-cell .project-manager {
+    font-size: 0.78rem;
+    color: var(--fg-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .state-federal-cell p {
     font-size: 0.88rem;
     color: var(--fg-dim);
     line-height: 1.65;
   }
 
-  /* ─── Land Acknowledgment ─── */
-  .acknowledgment {
-    padding: clamp(60px, 8vh, 100px) 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .acknowledgment-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .acknowledgment-label {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--fg-dim);
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  .acknowledgment p {
-    font-size: 0.95rem;
-    color: var(--fg-dim);
-    line-height: 1.8;
-  }
-
-  /* ─── Org Info ─── */
-  .org-info {
+  /* ─── Approach / Org Info ─── */
+  .approach {
     padding: clamp(80px, 12vh, 160px) 0;
   }
-  .org-info-grid {
+  .approach-header {
+    margin-bottom: clamp(56px, 8vh, 100px);
+  }
+  .approach-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1px;
@@ -565,12 +666,14 @@
     border-radius: 20px;
     overflow: hidden;
   }
-  .org-info-cell {
+  .approach-cell {
     background: var(--bg);
     padding: clamp(32px, 4vw, 48px);
     text-align: center;
+    transition: background 0.5s;
   }
-  .org-info-cell h4 {
+  .approach-cell:hover { background: #0f0f0e; }
+  .approach-cell h4 {
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -578,38 +681,10 @@
     font-weight: 600;
     margin-bottom: 14px;
   }
-  .org-info-cell p {
+  .approach-cell p {
     font-size: 0.92rem;
     color: var(--fg-dim);
     line-height: 1.7;
-  }
-  .org-info-cell a {
-    color: var(--fg);
-    transition: color 0.3s;
-  }
-  .org-info-cell a:hover { color: var(--accent); }
-  .org-docs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 24px;
-  }
-  .org-doc-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 18px;
-    border: 1px solid var(--border);
-    border-radius: 99px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--fg-dim);
-    transition: all 0.3s;
-  }
-  .org-doc-link:hover {
-    border-color: var(--accent);
-    color: var(--accent);
   }
 
   /* ─── CTA ─── */
@@ -763,19 +838,21 @@
 
   /* ─── Responsive ─── */
   @media (max-width: 1024px) {
-    .awards-grid { grid-template-columns: 1fr; }
-    .staff-grid { grid-template-columns: 1fr; }
-    .board-grid { grid-template-columns: repeat(2, 1fr); }
-    .org-info-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .featured-split { grid-template-columns: 1fr; }
+    .project-image-grid { grid-template-columns: repeat(2, 1fr); }
+    .approach-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
-    .board-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-image-grid { grid-template-columns: 1fr; }
+    .state-federal-grid { grid-template-columns: 1fr; }
     .cta-actions { flex-direction: column; align-items: center; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     .parallax-section { height: 30vh; margin: 0 12px; }
-    .org-docs { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
@@ -785,7 +862,7 @@
 <nav class="pill-nav" id="pillNav">
   <div class="pill-nav-bar">
     <a href="index.html" class="pill-nav-logo">SDMBA</a>
-    <span class="pill-nav-page">About</span>
+    <span class="pill-nav-page">Our Impact</span>
     <button class="pill-nav-toggle" id="menuToggle" aria-label="Menu">
       <div class="pill-nav-toggle-icon">
         <span></span>
@@ -801,7 +878,7 @@
         <img class="menu-thumb" src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?w=200&q=60" alt="" />
         Home
       </a></li>
-      <li><a href="impact.html">
+      <li><a href="impact.html" class="active">
         <img class="menu-thumb" src="https://images.unsplash.com/photo-1559521783-1d1599583485?w=200&q=60" alt="" />
         Our Impact
       </a></li>
@@ -821,7 +898,7 @@
         <img class="menu-thumb" src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=200&q=60" alt="" />
         Donate
       </a></li>
-      <li><a href="about.html" class="active">
+      <li><a href="about.html">
         <img class="menu-thumb" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&q=60" alt="" />
         About
       </a></li>
@@ -833,17 +910,17 @@
 <!-- ─── Hero ─── -->
 <section class="hero-inner">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1559521783-1d1599583485?w=1800&q=80" alt="Mountain biking San Diego trails" />
+    <img src="Images/OurTrailsAreLivingProof/trailbuilding.jpg" alt="Trail building in San Diego" />
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content container">
-    <div class="hero-tag">About SDMBA</div>
+    <div class="hero-tag">Trail Advocacy</div>
     <h1 class="hero-title">
-      <span class="line"><span class="line-inner">Improving trail</span></span>
-      <span class="line"><span class="line-inner">access since <em>1994.</em></span></span>
+      <span class="line"><span class="line-inner">Shaping the future</span></span>
+      <span class="line"><span class="line-inner">of San Diego <em>trails.</em></span></span>
     </h1>
     <p class="hero-sub">
-      Improve Trail Access. Encourage Stewardship. Build Community. That is our mission, and it has guided everything we do for three decades.
+      A dual-track approach to short-term trail improvements and long-term advocacy, planning, and stakeholder engagement across San Diego County.
     </p>
   </div>
 </section>
@@ -852,156 +929,228 @@
 <section class="statement">
   <div class="container-narrow">
     <p class="statement-text" id="statementText">
-      The San Diego Mountain Biking Association is a <em>volunteer-driven nonprofit</em> and one of the largest regional trail advocacy organizations in the United States. With over <em>1,700 members</em>, we work to protect trail access, build <em>sustainable trails</em>, and bring riders together across San Diego County.
+      SDMBA works on <em>two fronts</em> to improve trail access: short-term projects like trail trimming, tread repair, and bridge replacement, paired with <em>long-term advocacy</em> including master trail plans, public comment periods, and <em>stakeholder engagement</em> across jurisdictions.
     </p>
   </div>
 </section>
 
-<!-- ─── Awards ─── -->
-<section class="awards">
+<!-- ─── Stats ─── -->
+<section class="stats">
   <div class="container">
-    <div class="awards-grid">
-      <div class="award-cell">
-        <div class="award-year">2018</div>
-        <div class="award-title">Advocate of the Year</div>
-        <div class="award-org">San Diego County Bicycle Coalition</div>
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-number" data-count="12">0</div>
+        <div class="stat-label">Active Projects</div>
       </div>
-      <div class="award-cell">
-        <div class="award-year">2020</div>
-        <div class="award-title">Community Member of the Year</div>
-        <div class="award-org">San Diego County Parks & Recreation</div>
+      <div class="stat-cell">
+        <div class="stat-number" data-count="30">0</div>
+        <div class="stat-label">Years of Advocacy</div>
       </div>
-      <div class="award-cell">
-        <div class="award-year">2021</div>
-        <div class="award-title">Non Profit of the Year</div>
-        <div class="award-org">Olivenhain Municipal Water District</div>
+      <div class="stat-cell">
+        <div class="stat-number" data-count="6">0</div>
+        <div class="stat-label">Land Agencies</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number" data-count="3">0</div>
+        <div class="stat-label">Jurisdictions</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── Parallax Image ─── -->
+<!-- ─── Parallax Image #1 ─── -->
 <section class="parallax-section" id="parallaxOne">
-  <img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1800&q=80" alt="Trail building" />
+  <img src="Images/OurTrailsAreLivingProof/noblecanyon.jpg" alt="Noble Canyon trail" />
   <div class="parallax-overlay">
     <div class="parallax-text">
-      <h2>30 years of riding. Building. <em>Advocating.</em></h2>
+      <h2>From Noble Canyon to Balboa Park. <em>Every trail matters.</em></h2>
     </div>
   </div>
 </section>
 
-<!-- ─── Staff ─── -->
-<section class="staff">
+<!-- ─── Cleveland National Forest ─── -->
+<section class="featured">
   <div class="container">
-    <div class="staff-header">
-      <div class="kicker">Our Team</div>
-      <h2 class="section-title">The people behind<br>the <em>trails.</em></h2>
+    <div class="featured-header">
+      <div class="kicker">Federal Lands</div>
+      <h2 class="section-title">Cleveland National <em>Forest.</em></h2>
     </div>
-    <div class="staff-grid">
-      <div class="staff-card">
-        <div class="staff-role">Executive Director</div>
-        <h3>Peter Hulburt</h3>
-        <p>Born and raised in San Diego, Peter has spent his career in the cycling world — from bike mechanic at REI to spearheading their partnership with SDMBA. He believes recreation and conservation elevate each other.</p>
-        <a href="mailto:peter@sdmba.com" class="staff-email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          peter@sdmba.com
-        </a>
+    <div class="featured-split">
+      <div class="featured-image">
+        <img src="Images/OurTrailsAreLivingProof/pinevalley.jpg" alt="Mt. Laguna Recreation Area" />
+        <div class="featured-badge">Multi-Year Project</div>
       </div>
-      <div class="staff-card">
-        <div class="staff-role">Trails Coordinator</div>
-        <h3>Ben Stone</h3>
-        <p>A San Diego native, Ben brings nonprofit board and small business experience to trail development. He works with county land managers on short and long-range trail projects across San Diego County.</p>
-        <a href="mailto:bens@sdmba.com" class="staff-email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          bens@sdmba.com
-        </a>
-      </div>
-      <div class="staff-card">
-        <div class="staff-role">Trail Crew Lead</div>
-        <h3>Michael Uppenkamp</h3>
-        <p>A lifelong cyclist and San Diego native, Michael holds an Environmental Science degree from Cal Poly Humboldt. He brings professional trail building experience from Rock Solid Trail Contracting.</p>
-        <a href="mailto:mike@sdmba.com" class="staff-email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          mike@sdmba.com
-        </a>
+      <div class="featured-body">
+        <div class="project-status status-active">In Progress</div>
+        <h3>Mt. Laguna <em>Recreation Area</em></h3>
+        <p>A phased improvement plan for the Descanso Ranger District, including sustainable trail reroutes, erosion control, and new connector trails. SDMBA is working directly with the U.S. Forest Service on multi-year implementation of recreation improvements across the Mt. Laguna area.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── Board of Directors ─── -->
-<section class="board">
+<!-- ─── CNF Additional Projects ─── -->
+<section class="projects">
   <div class="container">
-    <div class="board-header">
-      <div class="kicker">Board of Directors</div>
-      <h2 class="section-title">Volunteer <em>leadership.</em></h2>
-    </div>
-    <div class="board-grid">
-      <div class="board-cell">
-        <div class="board-role">President</div>
-        <h3>Matt Bartelt</h3>
-        <p>Board member since 2018, president since 2021. Focused on trail advocacy, volunteer trail work, and building relationships with city planners.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-status status-pending">Pending</div>
+        <h3>Anderson Truck Trail</h3>
+        <div class="project-manager">U.S. Forest Service — Descanso District</div>
+        <p>Pending land acquisitions and jurisdictional coordination before trail improvements can begin. SDMBA continues to advocate for expanded access and sustainable recreation opportunities.</p>
       </div>
-      <div class="board-cell">
-        <div class="board-role">Vice President</div>
-        <h3>Scott Hansen</h3>
-        <p>Retired from a 35-year fire service career. SDMBA liaison to Daley Ranch since 2019, based in Carlsbad.</p>
-      </div>
-      <div class="board-cell">
-        <div class="board-role">Treasurer</div>
-        <h3>Gerry Krippner</h3>
-        <p>Mechanical engineer with business management background. Board member since 2020, rides mostly North County trails.</p>
-      </div>
-      <div class="board-cell">
-        <div class="board-role">Secretary</div>
-        <h3>Heath Anderson</h3>
-        <p>Background in federal law enforcement and IT, now a small business owner in Carlsbad Village. Completed his first Full Archipelago Ride.</p>
-      </div>
-      <div class="board-cell">
-        <div class="board-role">Board Member</div>
-        <h3>Tim Ingersoll</h3>
-        <p>Works in biotech and healthcare communications. Board member since 2017, focused on all-mountain and night riding.</p>
-      </div>
-      <div class="board-cell">
-        <div class="board-role">Board Member</div>
-        <h3>Don Sutton</h3>
-        <p>Former professional road cyclist and national team member. PhD from UCSD, head of trails committee since 2017.</p>
+      <div class="project-card">
+        <div class="project-status status-none">No Active Projects</div>
+        <h3>Palomar District</h3>
+        <div class="project-manager">U.S. Forest Service — Palomar District</div>
+        <p>No current projects in the Palomar Ranger District. SDMBA monitors opportunities for future trail development and advocacy as land management plans evolve.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── Land Acknowledgment ─── -->
-<section class="acknowledgment">
+<!-- ─── Local & Regional Projects ─── -->
+<section class="local-projects">
   <div class="container">
-    <div class="acknowledgment-inner">
-      <div class="acknowledgment-label">Land Acknowledgment</div>
-      <p>The San Diego Mountain Biking Association acknowledges that we ride, work, and gather on the unceded territory of the Kumeyaay, Payomkawichum, Kuupiaxchem, and Cahuilla peoples. We honor the 18 federally recognized tribal nations with reservations in San Diego County and commit to respectful stewardship of these lands.</p>
+    <div class="local-projects-header">
+      <div class="kicker">Local & Regional</div>
+      <h2 class="section-title">Building better trails <em>locally.</em></h2>
     </div>
-  </div>
-</section>
-
-<!-- ─── Org Info ─── -->
-<section class="org-info">
-  <div class="container">
-    <div class="org-info-grid">
-      <div class="org-info-cell">
-        <h4>Contact</h4>
-        <p><a href="mailto:info@sdmba.com">info@sdmba.com</a></p>
-        <p>P.O. Box 881491<br>San Diego, CA 92168</p>
-      </div>
-      <div class="org-info-cell">
-        <h4>Tax Status</h4>
-        <p>501(c)(3) Nonprofit</p>
-        <p>Tax ID: #20-1701837</p>
-      </div>
-      <div class="org-info-cell">
-        <h4>Governance</h4>
-        <div class="org-docs">
-          <a href="https://www.sdmba.com/mission.php" class="org-doc-link">Strategic Plan 2024-2029</a>
-          <a href="https://www.sdmba.com/mission.php" class="org-doc-link">Annual Reports</a>
-          <a href="https://www.sdmba.com/mission.php" class="org-doc-link">Bylaws</a>
+    <div class="project-image-grid">
+      <div class="project-image-card">
+        <div class="card-img">
+          <img src="Images/OurTrailsAreLivingProof/diamodnlake.jpeg" alt="Daley Ranch trails" />
         </div>
+        <div class="card-body">
+          <div class="project-status status-active">Active</div>
+          <h3>Daley Ranch</h3>
+          <div class="project-manager">City of Escondido</div>
+          <p>Trail maintenance and sustainable development within this 3,058-acre conservation area in Escondido, working with city land managers on long-term access.</p>
+        </div>
+      </div>
+      <div class="project-image-card">
+        <div class="card-img">
+          <img src="Images/TopSanDiegoRides/blackmountain.jpg" alt="Black Mountain Open Space" />
+        </div>
+        <div class="card-body">
+          <div class="project-status status-active">Active</div>
+          <h3>Black Mountain Open Space</h3>
+          <div class="project-manager">City of San Diego</div>
+          <p>Ongoing trail stewardship and advocacy for improved mountain bike access in one of San Diego's most popular open space parks.</p>
+        </div>
+      </div>
+      <div class="project-image-card">
+        <div class="card-img">
+          <img src="Images/TopSanDiegoRides/lospensquitos.webp" alt="Los Penasquitos Canyon" />
+        </div>
+        <div class="card-body">
+          <div class="project-status status-active">Active</div>
+          <h3>Los Penasquitos Canyon</h3>
+          <div class="project-manager">City & County of San Diego</div>
+          <p>Preserve-wide trail improvements and erosion mitigation in partnership with both city and county land managers.</p>
+        </div>
+      </div>
+      <div class="project-image-card">
+        <div class="card-img">
+          <img src="Images/TopSanDiegoRides/Mtwoodson.jpg" alt="Sycamore Canyon and Goodan Ranch" />
+        </div>
+        <div class="card-body">
+          <div class="project-status status-active">Active</div>
+          <h3>Sycamore Canyon & Goodan Ranch</h3>
+          <div class="project-manager">County of San Diego</div>
+          <p>Resource management plan approved with 2025 implementation. Coordinating trail stewardship and sustainable recreation within the preserve system.</p>
+        </div>
+      </div>
+      <div class="project-image-card">
+        <div class="card-img">
+          <img src="Images/trailbuilding.jpg" alt="Balboa Park trails" />
+        </div>
+        <div class="card-body">
+          <div class="project-status status-active">Active</div>
+          <h3>Balboa Park & Florida Canyon</h3>
+          <div class="project-manager">City of San Diego</div>
+          <p>Urban trail advocacy in San Diego's signature park, working to maintain and expand cycling access within the Florida Canyon natural area.</p>
+        </div>
+      </div>
+      <div class="project-image-card">
+        <div class="card-img">
+          <img src="Images/OurTrailsAreLivingProof/Mtwoodson.jpg" alt="San Diego urban canyons" />
+        </div>
+        <div class="card-body">
+          <div class="project-status status-active">Active</div>
+          <h3>Urban Canyons & Tri-Canyons</h3>
+          <div class="project-manager">City of San Diego</div>
+          <p>Advocating for improved trail connectivity and mountain bike access across San Diego's network of urban canyon open spaces.</p>
+        </div>
+      </div>
+      <div class="project-image-card">
+        <div class="card-img">
+          <img src="Images/OurTrailsAreLivingProof/lospensquitos.webp" alt="Otay regional trail" />
+        </div>
+        <div class="card-body">
+          <div class="project-status status-planning">Planning</div>
+          <h3>Otay Regional Trail</h3>
+          <div class="project-manager">Multi-Jurisdictional</div>
+          <p>Alignment study for a regional trail connecting multiple jurisdictions in the Otay Valley, involving coordination between city, county, and federal agencies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Parallax Image #2 ─── -->
+<section class="parallax-section" id="parallaxTwo">
+  <img src="Images/OurTrailsAreLivingProof/blackmountain.jpg" alt="Black Mountain ridgeline" />
+  <div class="parallax-overlay">
+    <div class="parallax-text">
+      <h2>Protecting access. Preserving <em>open space.</em></h2>
+    </div>
+  </div>
+</section>
+
+<!-- ─── State & Federal Projects ─── -->
+<section class="state-federal">
+  <div class="container">
+    <div class="state-federal-header">
+      <div class="kicker">State & Federal</div>
+      <h2 class="section-title">Beyond county <em>lines.</em></h2>
+    </div>
+    <div class="state-federal-grid">
+      <div class="state-federal-cell">
+        <div class="project-status status-planning">Planning</div>
+        <h3>San Diego National Wildlife Refuge</h3>
+        <div class="project-manager">U.S. Fish & Wildlife Service</div>
+        <p>Ongoing coordination with federal land managers to explore compatible recreation opportunities within the refuge, navigating conservation requirements and habitat protections.</p>
+      </div>
+      <div class="state-federal-cell">
+        <div class="project-status status-active">Active</div>
+        <h3>Cuyamaca Rancho State Park</h3>
+        <div class="project-manager">California State Parks</div>
+        <p>Trail maintenance and General Plan implementation following the 2015 approval. Working with State Parks on sustainable recreation improvements and post-fire recovery trail restoration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Our Approach ─── -->
+<section class="approach">
+  <div class="container">
+    <div class="approach-header">
+      <div class="kicker">Our Approach</div>
+      <h2 class="section-title">How we <em>advocate.</em></h2>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-cell">
+        <h4>Short-Term Projects</h4>
+        <p>Trail trimming, brushing, tread work for erosion control, and bridge replacement. Immediate, hands-on improvements that keep trails rideable today.</p>
+      </div>
+      <div class="approach-cell">
+        <h4>Long-Term Advocacy</h4>
+        <p>Master Trails Plans, Public Access Plans, park planning processes, public comment periods, and coordination across jurisdictions and agencies.</p>
+      </div>
+      <div class="approach-cell">
+        <h4>Key Challenges</h4>
+        <p>Navigating land ownership, mitigation requirements, conservation designations, habitat protection, and cultural resource considerations.</p>
       </div>
     </div>
   </div>
@@ -1010,14 +1159,14 @@
 <!-- ─── CTA ─── -->
 <section class="cta">
   <div class="container">
-    <h2>Ready to make<br>a <em>difference?</em></h2>
-    <p>Join 1,700+ members keeping San Diego's trails open, maintained, and accessible for everyone.</p>
+    <h2>Help shape our<br><em>trails.</em></h2>
+    <p>Join SDMBA to support trail advocacy, volunteer at trail days, or donate to fund the projects that keep San Diego riding.</p>
     <div class="cta-actions">
       <a href="https://www.sdmba.com/join_today.php" class="btn-pill btn-primary-pill">
         Become a Member
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
       </a>
-      <a href="https://www.sdmba.com/donate.php" class="btn-pill btn-outline-pill">Make a Donation</a>
+      <a href="https://www.sdmba.com/volunteer.php" class="btn-pill btn-outline-pill">Volunteer</a>
     </div>
   </div>
 </section>
@@ -1047,8 +1196,8 @@
       <div class="footer-col">
         <h4>About</h4>
         <a href="about.html">Mission</a>
+        <a href="impact.html">Our Impact</a>
         <a href="https://www.sdmba.com/sdmba_staff.php">Staff</a>
-        <a href="https://www.sdmba.com/board_of_directors.php">Board</a>
         <a href="https://www.sdmba.com/contact.php">Contact</a>
       </div>
     </div>
@@ -1165,7 +1314,42 @@ ScrollTrigger.create({
   }
 });
 
-/* ── Parallax image ── */
+/* ── Stats count up ── */
+document.querySelectorAll('.stat-number[data-count]').forEach(el => {
+  const target = parseInt(el.dataset.count);
+  ScrollTrigger.create({
+    trigger: el,
+    start: "top 80%",
+    once: true,
+    onEnter: () => {
+      gsap.to({ val: 0 }, {
+        val: target,
+        duration: 2,
+        ease: "power2.out",
+        onUpdate: function() {
+          const v = Math.round(this.targets()[0].val);
+          el.textContent = v >= 1000 ? v.toLocaleString() + '+' : v + '+';
+        }
+      });
+    }
+  });
+});
+
+/* ── Stats grid stagger ── */
+gsap.from(".stat-cell", {
+  y: 40,
+  opacity: 0,
+  duration: 0.8,
+  stagger: 0.1,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".stats-grid",
+    start: "top 80%",
+    once: true,
+  }
+});
+
+/* ── Parallax images ── */
 gsap.to("#parallaxOne img", {
   yPercent: 15,
   ease: "none",
@@ -1177,14 +1361,41 @@ gsap.to("#parallaxOne img", {
   }
 });
 
+gsap.to("#parallaxTwo img", {
+  yPercent: 15,
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#parallaxTwo",
+    start: "top bottom",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
+/* ── Featured image scale-in ── */
+gsap.from(".featured-image img", {
+  scale: 1.15,
+  duration: 1.5,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".featured-image",
+    start: "top 75%",
+    once: true,
+  }
+});
+
 /* ── Scroll-triggered reveals ── */
 const revealSelectors = [
-  ".staff-header",
-  ".staff-card",
-  ".board-header",
-  ".board-cell",
-  ".acknowledgment-inner",
-  ".org-info-cell",
+  ".featured-header",
+  ".featured-image",
+  ".featured-body",
+  ".project-card",
+  ".local-projects-header",
+  ".project-image-card",
+  ".state-federal-header",
+  ".state-federal-cell",
+  ".approach-header",
+  ".approach-cell",
   ".section-title",
   ".cta h2",
   ".cta p",
@@ -1209,22 +1420,8 @@ revealSelectors.forEach(sel => {
   });
 });
 
-/* ── Awards stagger ── */
-gsap.from(".award-cell", {
-  y: 40,
-  opacity: 0,
-  duration: 0.8,
-  stagger: 0.12,
-  ease: "power3.out",
-  scrollTrigger: {
-    trigger: ".awards-grid",
-    start: "top 80%",
-    once: true,
-  }
-});
-
-/* ── Staff card 3D hover ── */
-document.querySelectorAll('.staff-card').forEach(card => {
+/* ── Project image card 3D hover ── */
+document.querySelectorAll('.project-image-card, .project-card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
